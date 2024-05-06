@@ -38,13 +38,14 @@ export default class ProvinceService {
         }
     }
 
-    async updateProvince({ id, name, full_name, latitude, longitude, display_order }) {
+    async updateProvince(provinceData) {
         try {
-            return await this.repo.updateProvince({ id, name, full_name, latitude, longitude, display_order });
+            return await this.repo.updateProvince(provinceData);
         } catch (error) {
             throw new Error("Error al actualizar la provincia: " + error.message);
         }
     }
+    
 
     async deleteProvince(id) {
         try {

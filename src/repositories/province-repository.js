@@ -47,11 +47,11 @@ export default class ProvinceRepository {
         }
     }
 
-    async updateProvince({ id, name, full_name, latitude, longitude, display_order }) {
+    async updateProvince(provinceData) {
         const client = await pool.connect();
         try {
             const sql = 'UPDATE public.provinces SET name=$2, full_name=$3, latitude=$4, longitude=$5, display_order=$6 WHERE id=$1';
-            const values = [id, name, full_name, latitude, longitude, display_order];
+            const values = [provinceData.id, provinceData.name, provinceData.full_name, provinceData.latitude, provinceData.longitude, provinceData.display_order];
             const result = await client.query(sql, values);
             return result.rows;
         } catch (error) {
@@ -61,6 +61,8 @@ export default class ProvinceRepository {
             client.release();
         }
     }
+    
+    
 
     async deleteProvince(id) {
         const client = await pool.connect();
